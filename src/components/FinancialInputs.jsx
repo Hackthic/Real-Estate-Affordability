@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const FinancialInputs = ({ onFinancialChange }) => {
   const [financialData, setFinancialData] = useState({
@@ -12,16 +12,17 @@ const FinancialInputs = ({ onFinancialChange }) => {
 
     // Only allow numbers
     if (/^\d*$/.test(value)) {
-      setFinancialData((prev) => {
-        const updatedData = { ...prev, [name]: value };
-        onFinancialChange(updatedData); // Send updated data to parent component
-        return updatedData;
-      });
+      setFinancialData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
+  // ✅ FIX: Use useEffect to update the parent component AFTER state changes
+  useEffect(() => {
+    onFinancialChange(financialData);
+  }, [financialData, onFinancialChange]); // Runs whenever financialData changes
+
   return (
-    <div className="mb-4 ">
+    <div className="mb-4">
       <label className="block font-bold">Enter Saving (₹)</label>
       <input
         type="text"

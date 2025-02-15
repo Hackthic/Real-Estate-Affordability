@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
   const [costs, setCosts] = useState({
@@ -11,20 +11,21 @@ const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
     const { name, value } = e.target;
 
     if (/^\d*$/.test(value)) {
-      setCosts((prev) => {
-        const updatedCosts = { ...prev, [name]: value };
-        onAdditionalCostsChange(updatedCosts);
-        return updatedCosts;
-      });
+      setCosts((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  // Auto calculation for stamp duty and brokerage charge
-  const stampDuty = budget ? (budget * 0.055).toFixed(2) : "0";
-  const brokercharge = budget ? (budget * 0.015).toFixed(2) : "0";
+  // ✅ FIX: Use useEffect to update parent state AFTER costs update
+  useEffect(() => {
+    onAdditionalCostsChange(costs);
+  }, [costs, onAdditionalCostsChange]); // Runs whenever costs change
+
+  // ✅ OPTIMIZATION: Memoized calculations to prevent unnecessary recalculations
+  const stampDuty = useMemo(() => (budget ? (budget * 0.055).toFixed(2) : "0"), [budget]);
+  const brokerCharge = useMemo(() => (budget ? (budget * 0.015).toFixed(2) : "0"), [budget]);
 
   return (
-    <div className="mb-4 ">
+    <div className="mb-4">
       <label className="block font-bold">Registration Cost:</label>
       <input
         type="text"
@@ -58,7 +59,7 @@ const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
       {/* Auto-calculated values */}
       <div className="mt-3">
         <p className="font-bold">Stamp Duty (5.5%): ₹{stampDuty}</p>
-        <p className="font-bold">Broker Charge (1.5%): ₹{brokercharge}</p>
+        <p className="font-bold">Broker Charge (1.5%): ₹{brokerCharge}</p>
       </div>
     </div>
   );

@@ -1,26 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const LoanDetails = ({ onLoanDetailsChange})=>{
-    const [loanDetails, setLoanDetails]= useState({
-        downPayment :"",
-        tenure: "",
-        interestRate: ""
-    });
+const LoanDetails = ({ onLoanDetailsChange }) => {
+  const [loanDetails, setLoanDetails] = useState({
+    downPayment: "",
+    tenure: "",
+    interestRate: "",
+  });
 
-    const handleChange = (e)=>{
-        const {name, value}=e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-        if(/^\d*$/.test(value)){
-            setLoanDetails((prev)=>{
-                const updatedDetails ={...prev, [name]: value};
-                onLoanDetailsChange(updatedDetails);
-                return updatedDetails;
-            });
-        }
-    };
+    // ✅ Allow only numbers
+    if (/^\d*$/.test(value)) {
+      setLoanDetails((prev) => ({ ...prev, [name]: value }));
+    }
+  };
 
-    return (
-        <div className="mb-4 ">
+  // ✅ FIX: Use useEffect to update parent AFTER state changes
+  useEffect(() => {
+    onLoanDetailsChange(loanDetails);
+  }, [loanDetails, onLoanDetailsChange]); // Runs only when `loanDetails` changes
+
+  return (
+    <div className="mb-4">
       <label className="block font-bold">Down Payment (₹)</label>
       <input
         type="text"
@@ -31,7 +33,7 @@ const LoanDetails = ({ onLoanDetailsChange})=>{
         placeholder="Enter Down Payment"
       />
 
-      <label className="block font-bold">Loan Tenure (Years)</label>
+      <label className="block font-bold mt-3">Loan Tenure (Years)</label>
       <input
         type="text"
         name="tenure"
@@ -41,7 +43,7 @@ const LoanDetails = ({ onLoanDetailsChange})=>{
         placeholder="Enter Loan Tenure"
       />
 
-      <label className="block font-bold">Interest Rate (%)</label>
+      <label className="block font-bold mt-3">Interest Rate (%)</label>
       <input
         type="text"
         name="interestRate"
@@ -51,6 +53,7 @@ const LoanDetails = ({ onLoanDetailsChange})=>{
         placeholder="Enter Interest Rate"
       />
     </div>
-    );
+  );
 };
+
 export default LoanDetails;
