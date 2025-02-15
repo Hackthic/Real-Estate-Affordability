@@ -88,24 +88,7 @@ Run the development server
 npm run dev
 The app will be available at http://localhost:5173/ (default Vite port).
 
-## 🏗️ Project Structure
 
-📂 Real-Estate-Affordability
- ├── 📂 src
- │   ├── 📂 components
- │   │   ├── BudgetInput.jsx
- │   │   ├── AdditionalCosts.jsx
- │   │   ├── CreditScore.jsx
- │   │   ├── EMI_Calculator.jsx
- │   │   ├── AffordabilityCheck.jsx
- │   │   ├── ResultReport.jsx
- │   ├── App.jsx
- │   ├── main.jsx
- ├── 📂 public
- ├── .gitignore
- ├── package.json
- ├── README.md
- ├── vite.config.js
 🤝 Contributing
 ## 📌 How to Contribute?
 We welcome all contributions to improve this project! Follow these steps to contribute:
