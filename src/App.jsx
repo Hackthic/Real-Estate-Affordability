@@ -16,28 +16,32 @@ import { signOut } from "firebase/auth";
 function App() {
   const [selectedGoal, setSelectedGoal] = useState("");
   const [selectedPropertyType, setSelectedPropertyType] = useState("");
-  const [budget, setbudget] = useState("");
+  const [budget, setBudget] = useState(""); // Fixed function naming
   const [selectedPurpose, setSelectedPurpose] = useState("");
   const [financialDetails, setFinancialDetails] = useState({
     savings: "",
     income: "",
     debt: "",
   });
+
   const [additionalCosts, setAdditionalCosts] = useState({
     registration: "",
     maintenance: "",
     token: "",
-  })
-  const [loanDetails, setLoanDetails]= useState({
-    downPayment :"",
-    tenure :"",
-    interestRate:""
-  })
+  });
+
+  const [loanDetails, setLoanDetails] = useState({
+    downPayment: "",
+    tenure: "",
+    interestRate: "",
+  });
+
   const [creditScore, setCreditScore] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+
   // Handle Successful Login
   const handleAuthSuccess = () => {
     setIsAuthenticated(true);
@@ -46,12 +50,16 @@ function App() {
     setShowResult(true); // Show result after login
   };
 
-  // Handle Logout
+  // Handle Logout with Error Handling
   const handleLogout = async () => {
-    await signOut(auth);
-    setIsAuthenticated(false);
-    setUser(null);
-    setShowResult(false);
+    try {
+      await signOut(auth);
+      setIsAuthenticated(false);
+      setUser(null);
+      setShowResult(false);
+    } catch (error) {
+      console.error("Logout Error:", error);
+    }
   };
 
   // Handle Affordability Check (Show Auth Modal if Not Logged In)
@@ -62,25 +70,20 @@ function App() {
       setShowResult(true);
     }
   };
-  
+
   return (
-    < div className="min-h-screen flex flex-col items-center justify-center bg-[url('image.jpg')] bg-cover bg-center p-4  inset-0 bg-black opacity-90">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center p-4" style={{ backgroundImage: "url('image.jpg')" }}>
       <h1 className="text-3xl font-bold mb-5"> Real Estate Calculator </h1>
-      <div className="bg-gray-300 p-6 rounded-lg shadow-md w-96">
-      <GoalDropdown onSelectGoal={setSelectedGoal} />
-
+      <div className="bg-white p-6 rounded-lg shadow-md w-96">
+        <GoalDropdown onSelectGoal={setSelectedGoal} />
         <PropertyTypeDropdown onSelectPropertyType={setSelectedPropertyType} />
-        
-        <BudgetInput onBudgetChange={setbudget} />
-       
-
-        <PurposeDropdown onselectPurpose={setSelectedPurpose} />
-       
-
+        <BudgetInput onBudgetChange={setBudget} />
+        <PurposeDropdown onSelectPurpose={setSelectedPurpose} /> {/* Fixed typo */}
         <FinancialInputs onFinancialChange={setFinancialDetails} />
         <AdditionalCosts onAdditionalCostsChange={setAdditionalCosts} />
         <LoanDetails onLoanDetailsChange={setLoanDetails} />
         <CreditScore creditScore={creditScore} onCreditScoreChange={setCreditScore} />
+
         {!showResult && (
           <button onClick={handleCheckAffordability} className="bg-blue-600 text-white p-3 rounded mt-4 w-full">
             Check Affordability
@@ -104,8 +107,6 @@ function App() {
       </div>
 
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} onAuthSuccess={handleAuthSuccess} />}
-        
-      
     </div>
   );
 }
