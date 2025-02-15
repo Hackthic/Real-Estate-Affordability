@@ -9,6 +9,7 @@ import LoanDetails from "./components/LoanDetails";
 import CreditScore from "./components/CreditScore";
 import AffordabilityCheck from "./components/AffordabilityCheck";
 import Result from "./components/Result";
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [selectedGoal, setSelectedGoal] = useState("");
