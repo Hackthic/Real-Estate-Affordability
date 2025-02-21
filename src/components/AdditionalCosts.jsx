@@ -1,4 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
+import {
+  Grid2,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
 
 const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
   const [costs, setCosts] = useState({
@@ -21,47 +28,98 @@ const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
   }, [costs, onAdditionalCostsChange]); // Runs whenever costs change
 
   // ✅ OPTIMIZATION: Memoized calculations to prevent unnecessary recalculations
-  const stampDuty = useMemo(() => (budget ? (budget * 0.055).toFixed(2) : "0"), [budget]);
-  const brokerCharge = useMemo(() => (budget ? (budget * 0.015).toFixed(2) : "0"), [budget]);
+  const stampDuty = useMemo(
+    () => (budget ? (budget * 0.055).toFixed(2) : "0"),
+    [budget]
+  );
+  const brokerCharge = useMemo(
+    () => (budget ? (budget * 0.015).toFixed(2) : "0"),
+    [budget]
+  );
 
   return (
-    <div className="mb-4">
-      <label className="block font-bold">Registration Cost:</label>
-      <input
-        type="text"
-        name="registration"
-        value={costs.registration}
-        onChange={handleChange}
-        className="w-full p-2 border rounded-lg"
-        placeholder="Enter registration cost"
-      />
-
-      <label className="block font-bold">Maintenance Cost:</label>
-      <input
-        type="text"
-        name="maintenance"
-        value={costs.maintenance}
-        onChange={handleChange}
-        className="w-full p-2 border rounded-lg"
-        placeholder="Enter maintenance cost"
-      />
-
-      <label className="block font-bold">Token Amount:</label>
-      <input
-        type="text"
-        name="token"
-        value={costs.token}
-        onChange={handleChange}
-        className="w-full p-2 border rounded-lg"
-        placeholder="Enter token amount"
-      />
-
-      {/* Auto-calculated values */}
-      <div className="mt-3">
-        <p className="font-bold">Stamp Duty (5.5%): ₹{stampDuty}</p>
-        <p className="font-bold">Broker Charge (1.5%): ₹{brokerCharge}</p>
-      </div>
-    </div>
+    <>
+      <fieldset
+        style={{
+          border: "2px solid #ccc",
+          borderRadius: "8px",
+          padding: "16px",
+          marginBottom: "16px",
+        }}
+      >
+        <legend
+          style={{
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+            padding: "0 10px",
+          }}
+        >
+          Additional Costs
+        </legend>
+        <Grid2 container spacing={2} className="justify-center items-center">
+          <Grid2 size={4}>
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-amount">
+                Registration cost
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                name="registration"
+                value={costs.registration}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">₹</InputAdornment>
+                }
+                label="Registration cost"
+              />
+            </FormControl>
+          </Grid2>
+          <Grid2 size={4}>
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-amount">
+                Maintenance Cost
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                name="maintenance"
+                value={costs.maintenance}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">₹</InputAdornment>
+                }
+                label="Maintenance Cost"
+              />
+            </FormControl>
+          </Grid2>
+          <Grid2 size={4}>
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-amount">
+                Token Amount
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                name="token"
+                value={costs.token}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">₹</InputAdornment>
+                }
+                label="Token Amount"
+              />
+            </FormControl>
+          </Grid2>
+          <Grid2 size={12}>
+            {/* Auto-calculated values */}
+            <p className="font-bold text-slate-600 opacity-75 ml-2">
+              Stamp Duty (5.5%): ₹{stampDuty}
+            </p>
+            <p className="font-bold text-slate-600 opacity-75 ml-2">
+              Broker Charge (1.5%): ₹{brokerCharge}
+            </p>
+          </Grid2>
+        </Grid2>
+      </fieldset>
+    </>
   );
 };
 

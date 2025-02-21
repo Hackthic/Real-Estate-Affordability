@@ -1,28 +1,37 @@
+import { TextField } from "@mui/material";
+
 const CreditScore = ({ creditScore, onCreditScoreChange }) => {
-    const handleChange = (e) => {
-      let value = e.target.value;
-  
-      // Allow only numbers
-      if (/^\d*$/.test(value)) {
-        onCreditScoreChange(value);
-      }
-    };
-  
-    return (
-      <div className="mt-4">
-        <label className="block text-gray-700 font-medium">Credit Score:</label>
-        <input
-          type="number"
-          value={creditScore}
-          onChange={handleChange}
-          placeholder="Enter Credit Score (300-800)"
-          min="300"
-          max="800"
-          className="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-        />
-      </div>
-    );
+  const handleChange = (e) => {
+    let value = e.target.value;
+
+    // Allow only numbers
+    if (/^\d*$/.test(value)) {
+      onCreditScoreChange(value);
+    }
   };
-  
-  export default CreditScore;
-  
+
+  return (
+    <>
+      <TextField
+        fullWidth
+        id="outlined-number"
+        value={creditScore}
+        onChange={handleChange}
+        label="Credit Score"
+        type="number"
+        placeholder="Enter Credit Score: (300-800)"
+        inputProps={{
+          min: 300,
+          max: 800,
+        }}
+        slotProps={{
+          inputLabel: {
+            shrink: true,
+          },
+        }}
+      />
+    </>
+  );
+};
+
+export default CreditScore;
