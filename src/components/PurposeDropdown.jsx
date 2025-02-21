@@ -1,32 +1,36 @@
-import { useState } from "react";
+// import { useState } from "react"; Not Required
+import CustomSelect from "./ui/CustomSelect";
+import PropTypes from "prop-types";
+const PurposeDropdown = ({ selectedPurpose, onSelectPurpose }) => {
+  // Not Required
+  // const [purpose, setPurpose] = useState("");
 
-const PurposeDropdown = ({onselectPurpose})=>{
-    const [purpose, setPurpose] = useState("");
-
-    const handleChange=(e)=>{
-    const selectedValue = e.target.value;
-    setPurpose(selectedValue);
-    onselectPurpose(selectedValue);
-
+  // const handleChange = (e) => {
+  //   const selectedValue = e.target.value;
+  //   setPurpose(selectedValue);
+  //   onselectPurpose(selectedValue);
+  // };
+  const options = [
+    { value: "", label: "--Choose Purpose--" },
+    { value: "live", label: "Live" },
+    { value: "rent", label: "Rent" },
+    { value: "sell", label: "Sell" },
+  ];
+  return (
+    <>
+      <CustomSelect
+        label="Purpose"
+        onChange={onSelectPurpose}
+        value={selectedPurpose}
+        options={options}
+      />
+    </>
+  );
 };
-return(
-    <div className="mb-4 ">
-        <label className="block font-bold">select purpose :</label>
-   <select 
-   value={purpose}
-   onChange={handleChange}
-   className="w-full p-2 border rounded-lg"
-   >
-    <option value="">--choose purpose</option>
-    <option value="live">live</option>
-    <option value="rent">rent</option>
-    <option value="sell">sell it for later</option>
-   </select>
 
-    </div>
-)
-
-
-}
-
+//Defining prop types
+PurposeDropdown.propTypes = {
+  onSelectPurpose: PropTypes.func.isRequired,
+  selectedPurpose: PropTypes.string.isRequired,
+};
 export default PurposeDropdown;

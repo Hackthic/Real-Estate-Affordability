@@ -1,5 +1,11 @@
+import { Grid2 } from "@mui/material";
 import { useState, useEffect } from "react";
-
+import {
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
 const FinancialInputs = ({ onFinancialChange }) => {
   const [financialData, setFinancialData] = useState({
     saving: "",
@@ -22,37 +28,78 @@ const FinancialInputs = ({ onFinancialChange }) => {
   }, [financialData, onFinancialChange]); // Runs whenever financialData changes
 
   return (
-    <div className="mb-4">
-      <label className="block font-bold">Enter Saving (₹)</label>
-      <input
-        type="text"
-        name="saving"
-        value={financialData.saving}
-        onChange={handleChange}
-        className="w-full p-2 border rounded-lg"
-        placeholder="Enter your saving"
-      />
-
-      <label className="block font-bold mt-3">Enter Monthly Income (₹)</label>
-      <input
-        type="text"
-        name="income"
-        value={financialData.income}
-        onChange={handleChange}
-        className="w-full p-2 border rounded-lg"
-        placeholder="Enter Monthly Income"
-      />
-
-      <label className="block font-bold mt-3">Enter Existing Debt (₹)</label>
-      <input
-        type="text"
-        name="debt"
-        value={financialData.debt}
-        onChange={handleChange}
-        className="w-full p-2 border rounded-lg"
-        placeholder="Enter Existing Debt"
-      />
-    </div>
+    <>
+      <fieldset
+        style={{
+          border: "2px solid #ccc",
+          borderRadius: "8px",
+          padding: "16px",
+          marginBottom: "16px",
+        }}
+      >
+        <legend
+          style={{ fontWeight: "bold", fontSize: "1.2rem", padding: "0 10px" }}
+        >
+          Financial Details
+        </legend>
+        <Grid2 container spacing={2} className="justify-center items-center">
+          <Grid2 size={4}>
+            {" "}
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-amount">
+                Savings
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                value={financialData.saving}
+                onChange={handleChange}
+                name="saving"
+                startAdornment={
+                  <InputAdornment position="start">₹</InputAdornment>
+                }
+                label="Savings"
+              />
+            </FormControl>
+          </Grid2>
+          <Grid2 size={4}>
+            {" "}
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-amount">
+                Monthly Income
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                name="income"
+                value={financialData.income}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">₹</InputAdornment>
+                }
+                label="Monthly Income"
+              />
+            </FormControl>
+          </Grid2>
+          <Grid2 size={4}>
+            {" "}
+            <FormControl fullWidth sx={{ m: 1 }}>
+              <InputLabel htmlFor="outlined-adornment-amount">
+                Existing Debt
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                name="debt"
+                value={financialData.debt}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">₹</InputAdornment>
+                }
+                label="Existing Debt"
+              />
+            </FormControl>
+          </Grid2>
+        </Grid2>
+      </fieldset>
+    </>
   );
 };
 
