@@ -71,7 +71,7 @@ export default function CustomSelect({ label, options, value, onChange }) {
       {/* Outlined Fieldset Border */}
       <div
         ref={parentRef}
-        className={`relative border rounded-sm p-4 bg-inherit cursor-pointer transition-all 
+        className={`relative border rounded-sm p-4 w-full bg-inherit cursor-pointer transition-all 
           ${
             isOpen || value
               ? "border-blue-600 border-2"

@@ -29,7 +29,7 @@ const BudgetInput = ({ onBudgetChange }) => {
           placeholder="enter your budget"
         />
       </div> */}
-      <FormControl fullWidth sx={{ m: 1 }}>
+      <FormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-amount">Budget</InputLabel>
         <OutlinedInput
           id="outlined-adornment-amount"
