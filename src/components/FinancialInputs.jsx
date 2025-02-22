@@ -43,9 +43,9 @@ const FinancialInputs = ({ onFinancialChange }) => {
           Financial Details
         </legend>
         <Grid2 container spacing={2} className="justify-center items-center">
-          <Grid2 size={4}>
+          <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 4 }}>
             {" "}
-            <FormControl fullWidth sx={{ m: 1 }}>
+            <FormControl fullWidth>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Savings
               </InputLabel>
@@ -61,9 +61,9 @@ const FinancialInputs = ({ onFinancialChange }) => {
               />
             </FormControl>
           </Grid2>
-          <Grid2 size={4}>
+          <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 4 }}>
             {" "}
-            <FormControl fullWidth sx={{ m: 1 }}>
+            <FormControl fullWidth>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Monthly Income
               </InputLabel>
@@ -79,9 +79,9 @@ const FinancialInputs = ({ onFinancialChange }) => {
               />
             </FormControl>
           </Grid2>
-          <Grid2 size={4}>
+          <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 4 }}>
             {" "}
-            <FormControl fullWidth sx={{ m: 1 }}>
+            <FormControl fullWidth>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Existing Debt
               </InputLabel>

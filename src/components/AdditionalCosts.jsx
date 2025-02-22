@@ -57,8 +57,8 @@ const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
           Additional Costs
         </legend>
         <Grid2 container spacing={2} className="justify-center items-center">
-          <Grid2 size={4}>
-            <FormControl fullWidth sx={{ m: 1 }}>
+          <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 4 }}>
+            <FormControl fullWidth>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Registration cost
               </InputLabel>
@@ -74,8 +74,8 @@ const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
               />
             </FormControl>
           </Grid2>
-          <Grid2 size={4}>
-            <FormControl fullWidth sx={{ m: 1 }}>
+          <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 4 }}>
+            <FormControl fullWidth>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Maintenance Cost
               </InputLabel>
@@ -91,8 +91,8 @@ const AdditionalCosts = ({ budget, onAdditionalCostsChange }) => {
               />
             </FormControl>
           </Grid2>
-          <Grid2 size={4}>
-            <FormControl fullWidth sx={{ m: 1 }}>
+          <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 4 }}>
+            <FormControl fullWidth>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Token Amount
               </InputLabel>

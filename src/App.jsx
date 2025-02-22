@@ -83,16 +83,16 @@ function App() {
         <img
           src="/building-svgrepo-com.svg"
           alt="Real Estate Logo"
-          className="w-15 h-15 ml-4 z-10"
+          className="w-10 h-10 md:w-15 md:h-15 ml-4 z-10"
         />
-        <h1 className="text-3xl font-bold text-white p-5 z-10">
+        <h1 className="text-2xl md:text-3xl font-bold text-white p-5 z-10">
           {" "}
           Real Estate Calculator{" "}
         </h1>
       </div>
 
       <div className="flex min-h-screen bg-cover bg-center p-4 justify-center items-center">
-        <Box className="max-w-5xl bg-white opacity-90 p-6 rounded-lg shadow-md ">
+        <Box className="max-w-5xl bg-white opacity-90 p-6 rounded-lg shadow-md w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/2">
           <Grid2 container spacing={2} className="justify-center items-center">
             <Grid2 size={12}>
               <GeneralDetails
@@ -119,7 +119,7 @@ function App() {
                 loanDetails={loanDetails}
               />
             </Grid2>
-            <Grid2 size={4}>
+            <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
               <CreditScore
                 creditScore={creditScore}
                 onCreditScoreChange={setCreditScore}

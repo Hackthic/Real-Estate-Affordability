@@ -33,22 +33,22 @@ const GeneralDetails = ({
         General Details
       </legend>
       <Grid2 container spacing={2} className="justify-center items-center">
-        <Grid2 size={3}>
+        <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 3 }}>
           <GoalDropdown
             onSelectGoal={setSelectedGoal}
             selectedGoal={selectedGoal}
           />
         </Grid2>
-        <Grid2 size={3}>
+        <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 3 }}>
           <PropertyTypeDropdown
             onSelectPropertyType={setSelectedPropertyType}
             selectedPropertyType={selectedPropertyType}
           />
         </Grid2>
-        <Grid2 size={3}>
+        <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 3 }}>
           <BudgetInput onBudgetChange={setBudget} budget={budget} />
         </Grid2>
-        <Grid2 size={3}>
+        <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 3 }}>
           <PurposeDropdown
             onSelectPurpose={setSelectedPurpose}
             selectedPurpose={selectedPurpose}
