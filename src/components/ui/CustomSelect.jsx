@@ -71,11 +71,11 @@ export default function CustomSelect({ label, options, value, onChange }) {
       {/* Outlined Fieldset Border */}
       <div
         ref={parentRef}
-        className={`relative border rounded-sm p-4 w-full bg-inherit cursor-pointer transition-all 
+        className={`relative border-2 rounded-sm p-4 w-full bg-inherit cursor-pointer transition-all
           ${
             isOpen || value
-              ? "border-blue-600 border-2"
-              : "border-gray-400 hover:border-gray-600"
+              ? "border-blue-700"
+              : "border-gray-300 hover:border-gray-400/75"
           }`}
         onClick={() => setIsOpen((prev) => !prev)}
       >
@@ -114,14 +114,14 @@ export default function CustomSelect({ label, options, value, onChange }) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10"
+            className="absolute mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg z-15"
           >
             {options.map((option, i) => (
               <motion.li
                 key={option.value}
                 variants={itemVariants}
                 custom={i} // Pass index for stagger delay
-                className="p-3 hover:bg-gray-100 cursor-pointer"
+                className="p-3 hover:bg-gray-100 cursor-pointer z-15"
                 onClick={() => handleSelect(option.value)}
               >
                 {option.label}
