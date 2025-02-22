@@ -8,8 +8,8 @@ import FinancialInputs from "./components/FinancialInputs";
 import GeneralDetails from "./components/GeneralDetails";
 import LoanDetails from "./components/LoanDetails";
 import Result from "./components/Result";
-import { Boxes } from "./components/ui/background-boxes";
 import { auth } from "./firebaseConfig"; // Import Firebase Auth
+import LazyBackground from "./components/LazyLoadBackground";
 function App() {
   const [selectedGoal, setSelectedGoal] = useState("");
   const [selectedPropertyType, setSelectedPropertyType] = useState("");
@@ -69,16 +69,7 @@ function App() {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: "url('/image.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "bottom",
-        backgroundRepeat: "no-repeat",
-      }}
-      className="relative w-full h-full overflow-hidden"
-    >
-      <Boxes />
+    <LazyBackground>
       <div className="flex flex-row items-center">
         <img
           src="/building-svgrepo-com.svg"
@@ -92,7 +83,7 @@ function App() {
       </div>
 
       <div className="flex min-h-screen bg-cover bg-center p-4 justify-center items-center">
-        <Box className="max-w-5xl bg-white opacity-90 p-6 rounded-lg shadow-md w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/2">
+        <Box className="max-w-5xl bg-white opacity-90 p-6 rounded-lg shadow-md w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-full">
           <Grid2 container spacing={2} className="justify-center items-center">
             <Grid2 size={12}>
               <GeneralDetails
@@ -161,7 +152,7 @@ function App() {
           />
         )}
       </div>
-    </div>
+    </LazyBackground>
   );
 }
 
