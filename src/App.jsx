@@ -10,6 +10,7 @@ import LoanDetails from "./components/LoanDetails";
 import Result from "./components/Result";
 import { auth } from "./firebaseConfig"; // Import Firebase Auth
 import LazyBackground from "./components/LazyLoadBackground";
+import Header from "./components/Header";
 function App() {
   const [selectedGoal, setSelectedGoal] = useState("");
   const [selectedPropertyType, setSelectedPropertyType] = useState("");
@@ -70,20 +71,10 @@ function App() {
 
   return (
     <LazyBackground>
-      <div className="flex flex-row items-center">
-        <img
-          src="/building-svgrepo-com.svg"
-          alt="Real Estate Logo"
-          className="w-10 h-10 md:w-15 md:h-15 ml-4 z-10"
-        />
-        <h1 className="text-2xl md:text-3xl font-bold text-white p-5 z-10">
-          {" "}
-          Real Estate Calculator{" "}
-        </h1>
-      </div>
+      <Header />
 
       <div className="flex min-h-screen bg-cover bg-center p-4 justify-center items-center">
-        <Box className="max-w-5xl bg-white opacity-90 p-6 rounded-lg shadow-md w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-full">
+        <Box className="max-w-5xl bg-white dark:bg-zinc-800 dark:text-white opacity-90 p-6 rounded-lg shadow-md w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-full">
           <Grid2 container spacing={2} className="justify-center items-center">
             <Grid2 size={12}>
               <GeneralDetails
